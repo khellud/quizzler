@@ -10,6 +10,7 @@ class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
@@ -34,22 +35,62 @@ class _QuizePageState extends State<QuizePage> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Expanded(
-          child: Container(
-            color: Colors.green,
+          flex: 5,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
             child: TextButton(
               onPressed: () {},
-              child: const Text(
-                'True',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
+              child: const Center(
+                child: Text(
+                  'This is where the question text will go.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
           ),
-        )
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Container(
+              color: Colors.green,
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'True',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+        Expanded(
+            child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Container(
+            color: Colors.red,
+            child: TextButton(
+              onPressed: () {},
+              child: const Text(
+                'False',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+        ))
       ],
     );
   }
