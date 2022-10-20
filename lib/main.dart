@@ -76,21 +76,34 @@ class _QuizePageState extends State<QuizePage> {
           ),
         ),
         Expanded(
-            child: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Container(
-            color: Colors.red,
-            child: TextButton(
-              onPressed: () {},
-              child: const Text(
-                'False',
-                style: TextStyle(
-                  color: Colors.white,
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Container(
+              color: Colors.red,
+              child: TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'False',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
           ),
-        ))
+        ),
+        Row(
+          children: const [
+            Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+            Icon(
+              Icons.close,
+              color: Colors.red,
+            )
+          ],
+        )
       ],
     );
   }
