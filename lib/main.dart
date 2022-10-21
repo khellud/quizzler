@@ -42,23 +42,56 @@ class _QuizePageState extends State<QuizePage> {
     bool correctAnswer = quizeBrain.getCorrectAnswer()!;
 
     setState(() {
-      if (userPickedAnswer == correctAnswer) {
-        scoreKeeper.add(
-          const Icon(
-            Icons.check,
-            color: Colors.green,
-          ),
-        );
-      } else {
-        scoreKeeper.add(
-          const Icon(
-            Icons.close,
-            color: Colors.red,
-          ),
-        );
-      }
+      bool? finished = quizeBrain.isFinshed();
+      if (finished == true) {
+        quizeBrain.reset();
+        scoreKeeper = [];
+        Alert(
+          context: context,
+          title: 'Finished!',
+          desc: "You have reached the end of the question",
+        ).show();
 
-      quizeBrain.nextQuestion();
+        // Alert(
+        //   context: context,
+        //   title: "Finished!",
+        //   desc: "You have riched the end of the quiz.",
+        //   buttons: [
+        //     DialogButton(
+        //       onPressed: () => {
+        //
+        //           Navigator.pop(context);
+        //           quizeBrain.reset();
+        //           scoreKeeper = [];
+        //
+        //       },
+        //       width: 120,
+        //       child: const Text(
+        //         "CANCEL",
+        //         style: TextStyle(color: Colors.white, fontSize: 20),
+        //       ),
+        //     )
+        //   ],
+        // ).show();
+      } else {
+        if (userPickedAnswer == correctAnswer) {
+          scoreKeeper.add(
+            const Icon(
+              Icons.check,
+              color: Colors.green,
+            ),
+          );
+        } else {
+          scoreKeeper.add(
+            const Icon(
+              Icons.close,
+              color: Colors.red,
+            ),
+          );
+        }
+
+        quizeBrain.nextQuestion();
+      }
     });
   }
 
