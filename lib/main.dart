@@ -37,18 +37,29 @@ class QuizePage extends StatefulWidget {
 class _QuizePageState extends State<QuizePage> {
   List<Icon> scoreKeeper = [];
 
-  // List<String> question = [
-  //   'You can lead a cow down stairs but not up stairs.',
-  //   'Approximately one quarter of human bones are in the feet.',
-  //   'A slug\'s blood is green.',
-  // ];
+  void checkAnswer(bool userPickedAnswer) {
+    bool correctAnswer = quizeBrain.getCorrectAnswer()!;
 
-  // List<bool> answers = [false, true, true];
+    setState(() {
+      if (userPickedAnswer == correctAnswer) {
+        scoreKeeper.add(
+          const Icon(
+            Icons.check,
+            color: Colors.green,
+          ),
+        );
+      } else {
+        scoreKeeper.add(
+          const Icon(
+            Icons.close,
+            color: Colors.red,
+          ),
+        );
+      }
 
-  // Question q1 = Question(
-  //   q: 'You can lead a cow down stairs but not up stairs.',
-  //   a: false,
-  // );
+      quizeBrain.nextQuestion();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,21 +96,11 @@ class _QuizePageState extends State<QuizePage> {
                   'True',
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 20,
+                    fontSize: 25,
                   ),
                 ),
                 onPressed: () {
-                  false;
-                  bool correctAnswer = quizeBrain.getCorrectAnswer()!;
-
-                  if (correctAnswer == true) {
-                    print('correct');
-                  } else {
-                    print('incorrect');
-                  }
-                  setState(() {
-                    quizeBrain.nextQuestion();
-                  });
+                  checkAnswer(true);
                 },
               ),
             ),
@@ -115,19 +116,11 @@ class _QuizePageState extends State<QuizePage> {
                   'False',
                   style: TextStyle(
                     color: Colors.white,
+                    fontSize: 25,
                   ),
                 ),
                 onPressed: () {
-                  bool correctAnswer = quizeBrain.getCorrectAnswer()!;
-                  if (correctAnswer == false) {
-                    print('correct');
-                  } else {
-                    print('incorrect');
-                  }
-
-                  setState(() {
-                    quizeBrain.nextQuestion();
-                  });
+                  checkAnswer(false);
                 },
               ),
             ),
